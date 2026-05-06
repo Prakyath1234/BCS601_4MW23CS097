@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Utility App</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            width: 500px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5563d6;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Utility App</h1>
+    <p class="subtitle">
+        Performs HCF, LCM, String Reverse and Factorial Calculations
+    </p>
+
+    <form method="POST">
+        <label>Enter Number 1</label>
+        <input type="number" name="num1" placeholder="Example: 18" required>
+
+        <label>Enter Number 2</label>
+        <input type="number" name="num2" placeholder="Example: 12" required>
+
+        <label>Enter String</label>
+        <input type="text" name="string" placeholder="Example: Fun with Programming" required>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Calculation Results</h2>
+
+        <div class="card">
+            <h3>Number Operations</h3>
+            <p><strong>HCF:</strong> {{ result.hcf }}</p>
+            <p><strong>LCM:</strong> {{ result.lcm }}</p>
+        </div>
+
+        <div class="card">
+            <h3>String Operation</h3>
+            <p><strong>Reversed String:</strong> {{ result.reverse }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Factorials (4 to 8)</h3>
+            {% for key, value in result.factorials.items() %}
+                <p>{{ key }}! = {{ value }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <footer>
+        BCS601 Cloud Project | Python Flask + Render
+    </footer>
+</div>
+
+</body>
+</html>
